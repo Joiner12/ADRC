@@ -30,5 +30,18 @@ codegen/
 # Octave session info
 octave-workspace
 
-# reference papers
+# draft
+Script/draft_adrc_git.m
+Script/Draft_adrc.slx
+Script/CallGenFunc.m
+Script/CallMe.m
+
+# papers
 Doc/Material/Ref-Papers/
+
+# vsd
+Doc/图表-1.vsd
+Doc/图表.vsd
+Doc/图表-1.vsd
+*.~vsd
+*.vsd
