@@ -4,28 +4,33 @@ simulation of choice of life
 Life is About Choices and the Decisions We Make
 
 Life is like a road. There are long and short roads; smooth and rocky roads;
-crooked and straight paths. In our life many roads would come our way as we journey through life. 
-There are roads that lead to a life of single blessedness, marriage, and religious vocation. 
+crooked and straight paths. In our life many
+roads would come our way as we journey through life.
+There are roads that lead to a life of single blessedness,
+marriage, and religious vocation.
 There are also roads that lead to fame and fortune on one hand,
-or isolation and poverty on the other. There are roads to happiness as there are roads to sadness, 
+or isolation and poverty on the other.
+There are roads to happiness as there are roads to sadness,
 roads towards victory and jubilation, and roads leading to defeat and disappointment.
 
 
 Just like any road, there are corners, detours, and crossroads in life.
-Perhaps the most perplexing road that you would encounter is a crossroad. 
+Perhaps the most perplexing road that you would encounter is a crossroad.
 With four roads to choose from and with limited knowledge on where they would go,
-which road will you take? 
-What is the guarantee that we would choose the right one along the way? Would you take any road, 
+which road will you take?
+What is the guarantee that we would choose the right one along the way?
+Would you take any road,
 or just stay where you are: in front of a crossroad?
 
 
 There are no guarantees.
 
-You do not really know where a road will lead you until you take it. 
-There are no guarantees. 
-This is one of the most important things you need to realize about life. 
-Nobody said that choosing to do the right thing all the time would always lead you to happiness. 
-Loving someone with all your heart does not guarantee that it would be returned. 
+You do not really know where a road will lead you until you take it.
+There are no guarantees.
+This is one of the most important things you need to realize about life.
+Nobody said that choosing to do the right thing all the time would always
+lead you to happiness.
+Loving someone with all your heart does not guarantee that it would be returned.
 Gaining fame and fortune does not guarantee happiness.
 Accepting a good word from an influential superior to
 cut your trip short up the career ladder is not always bad,
@@ -39,8 +44,10 @@ Wrong decisions are always at hindsight.
 Had you known that you were making a wrong decision,
 would you have gone along with it? Perhaps not,
 why would you choose a certain path when you know it would get you lost?
-Why make a certain decision if you knew from the very beginning that it is not the right one. 
-It is only after you have made a decision and reflected on it that you realize its soundness.
+Why make a certain decision if you knew from the very beginning
+that it is not the right one.
+It is only after you have made a decision and reflected on it
+that you realize its soundness.
 If the consequences or outcomes are good for you, then you have decided correctly.
 Otherwise, your decision was wrong.
 
@@ -56,11 +63,13 @@ moreover open more roads. It is all a matter of perspective.
 You have the choice between being a lost traveller or an accidental tourist of life.
 But take caution that you do not make decisions haphazardly.
 Taking risks is not about being careless and stupid.
-Here are some pointers that could help you choose the best option in the face of life's crossroads:
+Here are some pointers that could help you choose the best option
+in the face of life's crossroads:
 
 Get as many information as you can about your situation.
 
-You cannot find the confidence to decide when you know so little about what you are faced with.
+You cannot find the confidence to decide when you know so little about
+what you are faced with.
 Just like any news reporter, ask the 5 W's: what, who, when, where, and why.
 What is the situation?
 Who are the people involved?
@@ -84,7 +93,8 @@ entertain all ideas.
 Do not shoot anything down when an idea comes to your head.
 Sometimes the most outrageous idea could prove to be the right one in the end.
 You can ask a friend to help you identify options and even make more options
-if you encounter some difficulty, but make sure that you make the decision yourself in the end.
+if you encounter some difficulty,
+but make sure that you make the decision yourself in the end.
 
 Weigh the pros and cons of every option.
 
@@ -131,4 +141,80 @@ for i = linspace(1,100,100)
 end
 figure('name','lifecycle')
 scatter(Points_x,Points_y)
+
+%% animatedline
+clc;
+global simu_steps; % ·ÂÕæ²½
+simu_steps =  50;
+fprintf('life cycle\n');
+try
+    close('lifecycle')
+catch
+end
+figure('name','lifecycle')
+% set figure properties
+xlim([0,simu_steps+1]);
+ylim([-5,5]);
+grid minor
+
+% create animate object
+an_m1 = animatedline('Marker','>');
+an_s = animatedline('Marker','>');
+an_m2 = animatedline('Marker','>');
+an_s.LineWidth = 1.2;
+an_m1.LineWidth = 2;
+an_m1.Color = rand(1,3);
+an_m1.MarkerFaceColor = 1 - an_m1.Color;
+
+an_m2.LineWidth = 2;
+an_m2.Color = rand(1,3);
+an_m2.MarkerFaceColor = 1 - an_m1.Color;
+
+% create line & set line properties
+l1 = line([0,simu_steps],[0,0]);
+l1.LineWidth = 1;
+l1.LineStyle ='--';
+
+forward_1 = [1,0];
+forward_2 = [1,0];
+forward_3 = [1,0];
+
+point_1 = [0,0];
+point_2 = [0,0];
+point_3 = [0,0];
+
+for i= 1:1:simu_steps
+    if i == 1 && false
+        addpoints(an_s,point_1(1),point_1(2));
+        addpoints(an_m1,point_2(1),point_2(2));
+        addpoints(an_m2,point_3(1),point_3(2));
+        point_1 = point_1 + forward_1;
+        forward_2 = [1,2*(rand()-0.5)];
+        point_2 = point_2 + forward_2;
+        forward_3 = [1,8*(rand()- 0.5)];
+        point_3 = point_3 + forward_3;
+    else
+        addpoints(an_s,point_1(1),point_1(2));
+        addpoints(an_m1,point_2(1),point_2(2));
+        addpoints(an_m2,point_3(1),point_3(2));
+        point_1 = point_1 + forward_1;
+        forward_2 = [1,2*(rand()-0.5)];
+        
+        if abs(point_2(2)) > 5 && point_2(2)*forward_2(2) > 0
+            forward_2(2) = 0;
+        end
+        point_2 = point_2 + forward_2;
+        
+        forward_3 = [1,2*(rand()-0.5)];
+        if abs(point_3(2)) > 5 && forward_3(2)*point_3(2) > 0
+            forward_3(2) = 0;
+        end
+        point_3 = point_3 + forward_3;
+    end
+    drawnow limitrate;
+    pause(1)
+end
+
+
+
 
