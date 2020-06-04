@@ -215,6 +215,70 @@ for i= 1:1:simu_steps
     pause(1)
 end
 
+%% Animated
+clc;
+clear;
+try
+    close('simu_life_1');
+catch
+    fprintf('no such figure open.\n');
+end
+global f ax an_m1;
+f = figure('name','simu_life_1');
+ax = axes(f,'Position',[0.13,0.15,0.82,0.82]);
+xlim([0,20]);
+ylim([-5,5]);
+an_m1 = animatedline('LineWidth',2,'Marker','>','Color',[110,166,255]/255);
+ctrl_ui_start = uicontrol(f,'Style','Push Button','String','Start','Position',[20,20,60,20]);
+ctrl_ui_stop = uicontrol(f,'Style','Push Button','String','Stop','Position',[90,20,60,20]);
+ctrl_ui_clf = uicontrol(f,'Style','Push Button','String','Clf','Position',[160,20,60,20]);
+ctrl_ui_start.Callback = @start_callback;
+ctrl_ui_stop.Callback = @stop_callback;
+ctrl_ui_clf.Callback = @clf_callback;
+% multi callback
 
+% 
+function start_callback(~,~)
+    global draw_timer_num1 curpoint ;
+    draw_timer_num1 = timer('ExecutionMode','fixedRate','Period',1);
+    draw_timer_num1.TimerFcn = @(~,~)timer_draw;
+    curpoint = [0,0];
+    start(draw_timer_num1);
+end
 
+%
+function stop_callback(~,~)
+    delete(timerfindall());
+    fprintf('delete timer\n');
+end
 
+%
+function timer_draw(~,~)
+    fprintf('num:%.0f\n',rand()*10);
+    global curpoint an_m1;
+    addpoints(an_m1,curpoint(1),curpoint(2));
+    forward_step = rand()/2 + 0.7; %0.7~1.2
+   
+    forward_dir = pi*(rand() - 0.5)/6; % 0~pi/2
+    curpoint_temp = curpoint + [forward_step,0];
+    curpoint = curpoint_temp*[cos(forward_dir),sin(forward_dir);-sin(forward_dir),cos(forward_dir)];
+    fprintf("Dir:%0.2f \t.Forward:%0.2f\n",rad2deg(forward_dir),forward_step);
+end
+
+% 
+function clf_callback(~,~)
+    global an_m1;
+    clearpoints(an_m1)
+end
+
+% %{
+% 警告: 将删除一个或多个正在运行的计时器对象。删除之前 MATLAB 已自动停止这些对象。 
+% 警告: 执行 'matlab.graphics.controls.ToolbarController' 类析构函数时，捕获到以下错误:
+% 错误使用 timer/stop (line 34)
+% 计时器对象无效。此对象已删除，应使用 CLEAR 将其从工作区中删除。
+% 
+% 出错 matlab.graphics.controls.FadeTimer/stop
+% %}
+% function figureClosed(~,~)
+%     delete(timerfindall());
+% end
