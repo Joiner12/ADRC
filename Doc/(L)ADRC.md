@@ -104,7 +104,6 @@ fhan = -r(\frac{a}{d}) -rsign(a)(1-fsg(a,d))\\
 \end{align}
 $$
 
-
 <img src="../Doc/Figure/fhan-11.png">
 
 
@@ -361,3 +360,5 @@ $$
 [6] 陈增强, 程赟, 孙明玮,等. 线性自抗扰控制理论及工程应用的若干进展[J]. 信息与控制, 2017(3).
 
 [7] Gao Z． Scaling and bandwidth-parameterization based controller tuning［C］ / /Proceedings of the American Control Conference． Piscataway，NJ， USA: IEEE， 2006: 4989 － 4996．  
+
+[8] Li D , Gao Z , Chen X , et al. Tuning Method for Second-order Active Disturbance Rejection Control[C]// 中国自动化学会控制理论专业委员会d. 2011.
