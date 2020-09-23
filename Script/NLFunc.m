@@ -62,10 +62,12 @@ classdef NLFunc
         function [cof,xf] = fal(x,alpha,delta)
             if abs(x) < delta
                 xf = x / delta^(1-alpha);
-                cof = x/xf;
+                cof = xf/x;
+%                 cof = x/xf;
             else
                 xf = (abs(x)^alpha) * sign(x);
-                cof = x/xf;
+                cof = xf/x;
+%                 cof = x/xf;
             end
         end
     end

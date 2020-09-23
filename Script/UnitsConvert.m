@@ -14,8 +14,6 @@
     Jerk:
     mmperms3:mm/ms^3
     mpers3:m/s^3
-
-
 %}
 classdef UnitsConvert
     % gravity to mm/s^2
