@@ -8,7 +8,7 @@ observer，ESO)三部分。自抗扰控制的独特之处在于它将作用于�
 
 
 
-<img src="../Doc/Figure/PrincipleofAdrc-11.png">
+<img src="Figure/PrincipleofAdrc-1.png">
 
 
 
@@ -157,8 +157,7 @@ e \delta ^{ \alpha - 1},&|e| \leq \delta \\
 \end{align}
 $$
 
-
-<img src="Figure/Fal-11.png">
+<img src="Figure/Fal-1.png">
 
 采用欧拉近似方法离散，离散表达式如下$^{[5]}$:
 $$
