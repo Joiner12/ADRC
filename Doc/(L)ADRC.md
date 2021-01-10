@@ -104,7 +104,7 @@ fhan = -r(\frac{a}{d}) -rsign(a)(1-fsg(a,d))\\
 \end{align}
 $$
 
-<img src="../Doc/Figure/fhan-11.png">
+<img src="../Doc/Figure/fhan-1.png">
 
 
 
