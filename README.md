@@ -1,4 +1,4 @@
-# ADRC-GIT
+# ADRC
 **ADRC(Active Disturbance Rejection Control)**
 
 For detailed documentation see:[(L)ADRC.md](Doc/(L)ADRC.md)
